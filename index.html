@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Reshmi 💖</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Sacramento&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #1a0a1e;
+        font-family: "Quicksand", sans-serif;
+        overflow-x: hidden;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor:
+          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><text y='20' font-size='20'>💖</text></svg>")
+            12 12,
+          auto;
+      }
+
+      /* Floating hearts background */
+      .hearts-bg {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .hearts-bg span {
+        position: absolute;
+        bottom: -50px;
+        font-size: 20px;
+        animation: floatUp linear infinite;
+        opacity: 0.6;
+      }
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) rotate(0deg) scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-110vh) rotate(360deg) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      /* Sections */
+      .section {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        padding: 2rem;
+        text-align: center;
+        width: 100%;
+        max-width: 700px;
+      }
+
+      /* Giant beating heart */
+      .big-heart {
+        font-size: 100px;
+        animation: beat 1s infinite;
+        display: inline-block;
+        filter: drop-shadow(0 0 30px rgba(255, 50, 100, 0.7));
+      }
+      @keyframes beat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        15% {
+          transform: scale(1.15);
+        }
+        30% {
+          transform: scale(1);
+        }
+        45% {
+          transform: scale(1.1);
+        }
+      }
+
+      h1 {
+        font-family: "Sacramento", cursive;
+        font-size: clamp(3rem, 8vw, 5rem);
+        background: linear-gradient(135deg, #ff6b9d, #ff2d75, #ff6bb5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 1rem 0;
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        color: #ff9ec4;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      /* Scroll indicator */
+      .scroll-hint {
+        position: absolute;
+        bottom: 30px;
+        animation: bounce 2s infinite;
+        font-size: 1.5rem;
+        color: #ff6b9d;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      /* Reasons section */
+      .reasons-title {
+        font-family: "Sacramento", cursive;
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        color: #ff6b9d;
+        margin-bottom: 2rem;
+      }
+
+      .reason-card {
+        background: rgba(255, 107, 157, 0.1);
+        border: 1px solid rgba(255, 107, 157, 0.25);
+        border-radius: 20px;
+        padding: 1.2rem 1.8rem;
+        margin: 0.6rem 0;
+        width: 100%;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+        opacity: 0;
+        transform: translateX(-40px);
+        backdrop-filter: blur(10px);
+      }
+      .reason-card.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reason-card:hover {
+        background: rgba(255, 107, 157, 0.2);
+        transform: scale(1.03);
+        box-shadow: 0 0 25px rgba(255, 50, 100, 0.3);
+      }
+
+      /* Coupon section */
+      .coupon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        width: 100%;
+        max-width: 600px;
+      }
+      .coupon {
+        background: linear-gradient(135deg, #2d1035, #3d1548);
+        border: 2px dashed #ff6b9d;
+        border-radius: 16px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .coupon::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 157, 0.15),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .coupon:hover::before {
+        opacity: 1;
+      }
+      .coupon:hover {
+        transform: rotate(-2deg) scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 50, 100, 0.4);
+      }
+      .coupon-emoji {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .coupon-text {
+        font-weight: 600;
+        color: #ffb8d4;
+        font-size: 0.95rem;
+      }
+      .coupon-fine {
+        font-size: 0.7rem;
+        color: #a06080;
+        margin-top: 0.5rem;
+      }
+      .coupon.redeemed {
+        opacity: 0.5;
+        border-color: #666;
+      }
+      .coupon.redeemed::after {
+        content: "REDEEMED";
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        color: #ff6b9d;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        transform: rotate(-15deg);
+      }
+
+      /* The big question */
+      .question-section {
+        gap: 1.5rem;
+      }
+      .question {
+        font-family: "Sacramento", cursive;
+        font-size: clamp(2.5rem, 7vw, 4.5rem);
+        color: #ff6b9d;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+
+      .btn-yes {
+        background: linear-gradient(135deg, #ff2d75, #ff6b9d);
+        border: none;
+        color: #fff;
+        padding: 1rem 3rem;
+        font-size: 1.5rem;
+        border-radius: 50px;
+        cursor: pointer;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 700;
+        transition: all 0.3s;
+        box-shadow: 0 0 30px rgba(255, 50, 100, 0.5);
+      }
+      .btn-yes:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 50px rgba(255, 50, 100, 0.8);
+      }
+
+      .btn-no {
+        background: transparent;
+        border: 2px solid #666;
+        color: #999;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        border-radius: 50px;
+        cursor: pointer;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 600;
+        transition: all 0.2s;
+        position: relative;
+      }
+
+      /* Celebration overlay */
+      #celebration {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: rgba(26, 10, 30, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+      }
+      #celebration.active {
+        display: flex;
+      }
+      #celebration h2 {
+        font-family: "Sacramento", cursive;
+        font-size: clamp(3rem, 10vw, 6rem);
+        background: linear-gradient(135deg, #ff6b9d, #ffb347, #ff6b9d);
+        background-size: 200% 200%;
+        animation: shimmer 2s ease infinite;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      @keyframes shimmer {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+      #celebration p {
+        font-size: 1.3rem;
+        color: #ffb8d4;
+        margin-top: 1rem;
+      }
+      .firework {
+        position: fixed;
+        font-size: 2rem;
+        animation: explode 1s forwards;
+        pointer-events: none;
+        z-index: 101;
+      }
+      @keyframes explode {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(2) translateY(-50px);
+        }
+      }
+
+      /* Poem typewriter */
+      .poem-box {
+        background: rgba(255, 107, 157, 0.08);
+        border: 1px solid rgba(255, 107, 157, 0.2);
+        border-radius: 20px;
+        padding: 2rem;
+        max-width: 500px;
+        min-height: 200px;
+        font-style: italic;
+        color: #ffb8d4;
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+      .poem-box .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.2em;
+        background: #ff6b9d;
+        animation: blink 0.8s infinite;
+        vertical-align: text-bottom;
+        margin-left: 2px;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Fun fact ticker */
+      .ticker-wrap {
+        width: 100%;
+        overflow: hidden;
+        background: rgba(255, 107, 157, 0.08);
+        border-radius: 50px;
+        padding: 0.8rem 0;
+        margin: 1.5rem 0;
+      }
+      .ticker {
+        display: flex;
+        gap: 4rem;
+        animation: scroll 25s linear infinite;
+        white-space: nowrap;
+        color: #ff9ec4;
+        font-size: 0.95rem;
+      }
+      @keyframes scroll {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-200%);
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 600px) {
+        .coupon-grid {
+          grid-template-columns: 1fr;
+        }
+        .btn-group {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <!-- SECTION 1: Hero -->
+    <div class="section">
+      <div class="big-heart">💖</div>
+      <h1>Happy Valentine's Day, Reshu!</h1>
+      <p class="subtitle">
+        I made you a whole website because a card felt too small 💗
+      </p>
+      <div class="ticker-wrap">
+        <div class="ticker">
+          <span>💕 You're my favorite notification 💕</span>
+          <span>🐻 You're unbearably cute 🐻</span>
+          <span>👻 Enik ninne othiri ishtamaadi pishaashe!! 👻</span>
+          <span>📶 You have full bars in my heart 📶</span>
+          <span>🔋 You recharge my soul 🔋</span>
+          <span>⭐ You're the reason I check my phone and smile ⭐</span>
+        </div>
+      </div>
+      <div class="scroll-hint">👇 scroll down, babe 👇</div>
+    </div>
+
+    <!-- SECTION 2: Reasons -->
+    <div class="section">
+      <div class="reasons-title">Reasons I Love You</div>
+      <div class="reason-card">
+        💛 Your laugh — it'll make me laugh even when nothings funny
+      </div>
+      <div class="reason-card">
+        🤪 You tolerate my terrible jokes (and sometimes even laugh)
+      </div>
+      <div class="reason-card">
+        🍳 The way you cook chicken curry. Ohh ente moneee!!!
+      </div>
+      <div class="reason-card">
+        😴 You look adorable when you fall asleep (Sherikum nalla cute aane)
+      </div>
+      <div class="reason-card">
+        🧠 You're somehow always right and I've learned to accept it
+      </div>
+      <div class="reason-card">
+        🤗 Your hugs could literally cure diseases, I'm convinced
+      </div>
+      <div class="reason-card">
+        📱 You send me memes that are actually informative
+      </div>
+      <div class="reason-card">
+        🫶 You make even boring errands feel like an adventure
+      </div>
+    </div>
+
+    <!-- SECTION 3: Poem -->
+    <div class="section">
+      <div class="reasons-title">A Totally Serious Poem</div>
+      <div class="poem-box" id="poem"></div>
+    </div>
+
+    <!-- SECTION 4: Love Coupons -->
+    <div class="section">
+      <div class="reasons-title">Love Coupons</div>
+      <p class="subtitle">
+        Click to redeem (no expiry, unlimited uses, because I love you)
+      </p>
+      <div class="coupon-grid">
+        <div class="coupon" onclick="redeemCoupon(this)">
+          <div class="coupon-emoji">🎬</div>
+          <div class="coupon-text">
+            One Movie Night<br />YOUR Pick, Zero Complaints
+          </div>
+          <div class="coupon-fine">* even if it's a 3-hour romance</div>
+        </div>
+        <div class="coupon" onclick="redeemCoupon(this)">
+          <div class="coupon-emoji">🍫</div>
+          <div class="coupon-text">Emergency Chocolate<br />Delivery</div>
+          <div class="coupon-fine">* delivered with kisses</div>
+        </div>
+        <div class="coupon" onclick="redeemCoupon(this)">
+          <div class="coupon-emoji">💆</div>
+          <div class="coupon-text">
+            One Full Back Massage<br />No Time Limit
+          </div>
+          <div class="coupon-fine">* arms may fall off, worth it</div>
+        </div>
+        <div class="coupon" onclick="redeemCoupon(this)">
+          <div class="coupon-emoji">🍕</div>
+          <div class="coupon-text">You Win Any Argument<br />Free Pass</div>
+          <div class="coupon-fine">* let's be real, you already do</div>
+        </div>
+        <div class="coupon" onclick="redeemCoupon(this)">
+          <div class="coupon-emoji">🛋️</div>
+          <div class="coupon-text">Full Day of Couch<br />Cuddles & Snacks</div>
+          <div class="coupon-fine">* pajamas mandatory</div>
+        </div>
+        <div class="coupon" onclick="redeemCoupon(this)">
+          <div class="coupon-emoji">👩‍🍳</div>
+          <div class="coupon-text">
+            I'll Cook Dinner<br />(or Order Fancy Takeout)
+          </div>
+          <div class="coupon-fine">* fire extinguisher on standby</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: The Question -->
+    <div class="section question-section">
+      <div class="big-heart">💝</div>
+      <div class="question">Will you be my Valentine?</div>
+      <div class="btn-group">
+        <button class="btn-yes" onclick="sayYes()">Yes! 💖</button>
+        <button class="btn-no" id="noBtn">No</button>
+      </div>
+      <p
+        id="noCounter"
+        style="color: #a06080; margin-top: 1rem; font-size: 0.9rem"
+      ></p>
+    </div>
+
+    <!-- Celebration overlay -->
+    <div id="celebration">
+      <h2>Enik allelum ariyaam 🥰</h2>
+      <p>You're stuck with me forever, Reshmi. No take-backs.</p>
+      <p style="font-size: 3rem; margin-top: 1rem">💖💖💖</p>
+    </div>
+
+    <script>
+      // Floating hearts
+      const bg = document.getElementById("heartsBg");
+      const heartEmojis = [
+        "💖",
+        "💕",
+        "💗",
+        "💓",
+        "💘",
+        "💝",
+        "❤️",
+        "🩷",
+        "♥️",
+        "💞",
+      ];
+      function spawnHeart() {
+        const s = document.createElement("span");
+        s.textContent =
+          heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+        s.style.left = Math.random() * 100 + "%";
+        s.style.fontSize = 12 + Math.random() * 20 + "px";
+        s.style.animationDuration = 6 + Math.random() * 8 + "s";
+        s.style.animationDelay = Math.random() * 2 + "s";
+        bg.appendChild(s);
+        setTimeout(() => s.remove(), 16000);
+      }
+      setInterval(spawnHeart, 400);
+
+      // Scroll reveal for reason cards
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+              setTimeout(() => e.target.classList.add("visible"), i * 100);
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+      document
+        .querySelectorAll(".reason-card")
+        .forEach((c) => observer.observe(c));
+
+      // Typewriter poem
+      const poemLines = [
+        "Roses are red,",
+        "Violets are blue,",
+        'I googled "best Valentine\'s poem"',
+        "But none were as cute as you.",
+        "",
+        "So I built this website instead,",
+        "With hearts and code and flair,",
+        "Because you deserve the whole internet,",
+        "But this page is all I could spare. 😅",
+        "",
+        "P.S. I love you muthheee 💖",
+      ];
+      const poemEl = document.getElementById("poem");
+      let poemStarted = false;
+      const poemObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && !poemStarted) {
+            poemStarted = true;
+            typePoem();
+          }
+        },
+        { threshold: 0.5 },
+      );
+      poemObserver.observe(poemEl);
+
+      async function typePoem() {
+        poemEl.innerHTML = '<span class="cursor"></span>';
+        for (const line of poemLines) {
+          for (const char of line) {
+            poemEl.insertBefore(
+              document.createTextNode(char),
+              poemEl.querySelector(".cursor"),
+            );
+            await new Promise((r) => setTimeout(r, 45));
+          }
+          poemEl.insertBefore(
+            document.createElement("br"),
+            poemEl.querySelector(".cursor"),
+          );
+          await new Promise((r) => setTimeout(r, 300));
+        }
+      }
+
+      // Coupon redeem
+      function redeemCoupon(el) {
+        if (!el.classList.contains("redeemed")) {
+          el.classList.add("redeemed");
+          popHearts(el, 8);
+        }
+      }
+
+      // No button shenanigans
+      let noCount = 0;
+      const noBtn = document.getElementById("noBtn");
+      const noMessages = [
+        "Are you sure? 🥺",
+        "Really really sure?? 😢",
+        "My heart is breaking... 💔",
+        "Please reconsider!! 😭",
+        "Njan diary milk medich tharaam!!! 🍫",
+        "FINE. But the button won't let you. 😤",
+      ];
+
+      noBtn.addEventListener("mouseover", function () {
+        if (noCount >= 2) {
+          const x = Math.random() * (window.innerWidth - 150);
+          const y = Math.random() * (window.innerHeight - 60);
+          this.style.position = "fixed";
+          this.style.left = x + "px";
+          this.style.top = y + "px";
+          this.style.zIndex = "50";
+        }
+      });
+
+      noBtn.addEventListener("click", function () {
+        noCount++;
+        const msg = noMessages[Math.min(noCount - 1, noMessages.length - 1)];
+        document.getElementById("noCounter").textContent = msg;
+        // Shrink the no button, grow the yes button
+        this.style.transform = `scale(${Math.max(0.3, 1 - noCount * 0.1)})`;
+        document.querySelector(".btn-yes").style.transform =
+          `scale(${1 + noCount * 0.1})`;
+        if (noCount >= noMessages.length) {
+          this.style.position = "fixed";
+        }
+      });
+
+      // Yes celebration
+      function sayYes() {
+        document.getElementById("celebration").classList.add("active");
+        for (let i = 0; i < 60; i++) {
+          setTimeout(() => {
+            const fw = document.createElement("div");
+            fw.className = "firework";
+            fw.textContent =
+              heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            fw.style.left = Math.random() * 100 + "vw";
+            fw.style.top = Math.random() * 100 + "vh";
+            fw.style.fontSize = 20 + Math.random() * 30 + "px";
+            document.body.appendChild(fw);
+            setTimeout(() => fw.remove(), 1000);
+          }, i * 100);
+        }
+      }
+
+      function popHearts(el, count) {
+        const rect = el.getBoundingClientRect();
+        for (let i = 0; i < count; i++) {
+          const h = document.createElement("div");
+          h.className = "firework";
+          h.textContent = "💖";
+          h.style.left =
+            rect.left + rect.width / 2 + (Math.random() - 0.5) * 80 + "px";
+          h.style.top =
+            rect.top + rect.height / 2 + (Math.random() - 0.5) * 80 + "px";
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 1000);
+        }
+      }
+    </script>
+  </body>
+</html>
